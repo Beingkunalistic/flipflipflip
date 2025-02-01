@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iceland Travel Showcase</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a1a;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, 200px);
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .tile {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            opacity: 0;
+            transform: translateX(-100%);
+            transition: all 0.8s ease-out;
+        }
+
+        .tile.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .from-left {
+            transform: translateX(-100%);
+        }
+
+        .from-right {
+            transform: translateX(100%);
+        }
+
+        .from-top {
+            transform: translateY(-100%);
+        }
+
+        .from-bottom {
+            transform: translateY(100%);
+        }
+
+        .image-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .large {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+            z-index: 1;
+        }
+
+        .text-tile {
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .brown-tile {
+            background-color: #766B5D;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .discover-btn {
+            margin-top: 1rem;
+            padding: 0.8rem 1.5rem;
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .discover-btn:hover {
+            background-color: white;
+            color: black;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .nav-btn {
+            padding: 0.8rem 1.5rem;
+            background-color: transparent;
+            border: 1px solid #766B5D;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background-color: #766B5D;
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+            }
+
+            .tile {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .large {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="grid">
+            <div class="tile large from-left">
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1504829857797-ddff29c27927" alt="Reykjavik landscape">
+                </div>
+                <div class="content">
+                    <h1>Reykjavik</h1>
+                    <p>Iceland, the Land of Fire and Ice</p>
+                </div>
+            </div>
+            <div class="tile text-tile from-top">
+                <div class="content">
+                    <h2>Unleash your adventurous spirit in Iceland.</h2>
+                    <p>Witness the Northern Lights, soak in geothermal pools, and explore dramatic landscapes sculpted
+                        by volcanoes and glaciers.</p>
+                </div>
+            </div>
+            <div class="tile from-right">
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1520769669658-f07657f5a307" alt="Mountain landscape">
+                </div>
+            </div>
+            <div class="tile brown-tile from-bottom">
+                <div class="image-container">
+                    <img src="https://www.sliderrevolution.com/wp-content/uploads/revslider/Bento-Grid-Travel-Slider/bird1.jpg"
+                        alt="Cabin">
+                </div>
+            </div>
+            <div class="tile from-right">
+                <div class="content">
+                    <h3>Explore</h3>
+                    <p>Golden Circle tour - waterfalls, geysers, and national parks</p>
+                    <button class="discover-btn">DISCOVER MORE</button>
+                </div>
+            </div>
+            <div class="tile brown-tile from-right">
+                <div class="content">
+                    <h3>Stay</h3>
+                    <p>Cozy cabins with views of the aurora</p>
+                </div>
+            </div>
+            <div class="tile from-top">
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1575367439058-6096bb9cf5e2" alt="Puffin">
+                </div>
+            </div>
+            <div class="tile brown-tile from-bottom">
+                <div class="content">
+                    <h3>Cuisine</h3>
+                    <p>Try Icelandic lamb and rye bread baked in hot springs</p>
+                </div>
+            </div>
+            <div class="tile from-right">
+                <div class="image-container">
+                    <img src="https://www.sliderrevolution.com/wp-content/uploads/revslider/Bento-Grid-Travel-Slider/cabin.jpg"
+                        alt="Mountain landscape">
+                </div>
+            </div>
+        </div>
+        <div class="navigation">
+            <button class="nav-btn prev">PREVIOUS</button>
+            <button class="nav-btn next">NEXT</button>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tiles = document.querySelectorAll('.tile');
+            const nextBtn = document.querySelector('.next');
+            const prevBtn = document.querySelector('.prev');
+
+            let currentSet = 0;
+            let isTransitioning = false;
+
+            const sets = [
+                // First set
+                {
+                    images: [
+                        'https://images.unsplash.com/photo-1504829857797-ddff29c27927',
+                        'https://images.unsplash.com/photo-1520769669658-f07657f5a307',
+                        'https://images.unsplash.com/photo-1516233758-6f9462169c47',
+                        'https://images.unsplash.com/photo-1575367439058-6096bb9cf5e2'
+                    ],
+                    titles: ['Reykjavik', 'Explore', 'Stay', 'Cuisine'],
+                    descriptions: [
+                        'Iceland, the Land of Fire and Ice',
+                        'Golden Circle tour - waterfalls, geysers, and national parks',
+                        'Cozy cabins with views of the aurora',
+                        'Try Icelandic lamb and rye bread baked in hot springs'
+                    ]
+                },
+                // Second set
+                {
+                    images: [
+                        'https://images.unsplash.com/photo-1490080886722-7ea7892d64c5',
+                        'https://images.unsplash.com/photo-1476610182048-b716b8518aae',
+                        'https://images.unsplash.com/photo-1439396087961-98bc12c21176',
+                        'https://images.unsplash.com/photo-1433838552652-f9a46b332c40'
+                    ],
+                    titles: ['Glaciers', 'Adventure', 'Relax', 'Nature'],
+                    descriptions: [
+                        'Explore ancient ice formations',
+                        'Hiking and ice climbing experiences',
+                        'Geothermal spa retreats',
+                        'Wildlife and natural wonders'
+                    ]
+                },
+                // Third set
+                {
+                    images: [
+                        'https://images.unsplash.com/photo-1484821582734-6c6c9f99a672',
+                        'https://images.unsplash.com/photo-1534425582704-85e5eedff997',
+                        'https://images.unsplash.com/photo-1488415032361-b7e238421f1b',
+                        'https://images.unsplash.com/photo-1490079397423-a3931fd75940'
+                    ],
+                    titles: ['Northern Lights', 'Culture', 'History', 'Seasons'],
+                    descriptions: [
+                        'Dance of the Aurora Borealis',
+                        'Icelandic traditions and festivals',
+                        'Viking heritage sites',
+                        'Experience the midnight sun'
+                    ]
+                }
+            ];
+
+            // Improved image preloading with better error handling
+            function preloadImage(url) {
+                return new Promise((resolve) => {
+                    const img = new Image();
+
+                    img.onload = () => resolve(true);
+                    img.onerror = () => {
+                        console.warn(`Failed to load image: ${url}`);
+                        resolve(false); // Resolve false instead of rejecting
+                    };
+
+                    img.src = url;
+                });
+            }
+
+            // Preload all images with improved error handling
+            async function preloadImages() {
+                try {
+                    const loadResults = await Promise.all(
+                        sets.flatMap(set => set.images.map(preloadImage))
+                    );
+
+                    const failedCount = loadResults.filter(result => !result).length;
+                    if (failedCount > 0) {
+                        console.warn(`${failedCount} images failed to preload`);
+                    }
+
+                    return true;
+                } catch (error) {
+                    console.warn('Error during image preloading:', error);
+                    return false;
+                }
+            }
+
+            // Initial animation with error handling
+            preloadImages().then(() => {
+                requestAnimationFrame(() => {
+                    tiles.forEach(tile => tile.classList.add('active'));
+                });
+            });
+
+            function updateTileContent(tile, index) {
+                if (!tile.querySelector('.image-container')) return;
+
+                const currentImg = tile.querySelector('img');
+                const titleEl = tile.querySelector('h1, h3');
+                const descEl = tile.querySelector('p');
+
+                // Update text content first
+                if (titleEl && !tile.classList.contains('text-tile')) {
+                    titleEl.textContent = sets[currentSet].titles[index];
+                }
+                if (descEl && !tile.classList.contains('text-tile')) {
+                    descEl.textContent = sets[currentSet].descriptions[index];
+                }
+
+                // Then handle image update
+                const newSrc = sets[currentSet].images[index];
+
+                // Only create new image if source is different
+                if (currentImg.src !== newSrc) {
+                    const newImg = new Image();
+
+                    newImg.onload = () => {
+                        currentImg.src = newSrc;
+                        currentImg.alt = sets[currentSet].titles[index];
+                    };
+
+                    newImg.onerror = () => {
+                        console.warn(`Failed to load image: ${newSrc}`);
+                        // Keep the current image if the new one fails to load
+                    };
+
+                    newImg.src = newSrc;
+                }
+            }
+
+            function updateImages(direction) {
+                if (isTransitioning) return;
+                isTransitioning = true;
+
+                // Disable buttons during transition
+                nextBtn.disabled = true;
+                prevBtn.disabled = true;
+
+                // Remove active class to trigger exit animation
+                requestAnimationFrame(() => {
+                    tiles.forEach(tile => tile.classList.remove('active'));
+                });
+
+                setTimeout(() => {
+                    if (direction === 'next') {
+                        currentSet = (currentSet + 1) % sets.length;
+                    } else {
+                        currentSet = (currentSet - 1 + sets.length) % sets.length;
+                    }
+
+                    // Update content for image tiles
+                    const imageTiles = Array.from(tiles).filter(tile =>
+                        tile.querySelector('.image-container')
+                    );
+
+                    imageTiles.forEach((tile, index) => {
+                        updateTileContent(tile, index);
+                    });
+
+                    // Trigger entrance animation
+                    requestAnimationFrame(() => {
+                        tiles.forEach(tile => tile.classList.add('active'));
+                    });
+
+                    // Re-enable buttons after transition
+                    setTimeout(() => {
+                        nextBtn.disabled = false;
+                        prevBtn.disabled = false;
+                        isTransitioning = false;
+                    }, 800);
+                }, 800);
+            }
+
+            nextBtn.addEventListener('click', () => {
+                if (!nextBtn.disabled) {
+                    updateImages('next');
+                }
+            });
+
+            prevBtn.addEventListener('click', () => {
+                if (!prevBtn.disabled) {
+                    updateImages('prev');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
